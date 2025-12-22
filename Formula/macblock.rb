@@ -1,7 +1,7 @@
 class Macblock < Formula
   include Language::Python::Virtualenv
 
-  desc "Local DNS sinkhole for macOS (dnsmasq + PF)"
+  desc "Local DNS sinkhole for macOS using dnsmasq"
   homepage "https://github.com/SpyicyDev/macblock"
 
   # TODO: add stable url + sha256 when you tag releases.
@@ -23,7 +23,7 @@ class Macblock < Formula
 
       Notes:
         - Do not run `sudo brew`.
-        - `sudo macblock uninstall` removes system integration (PF + launchd).
+        - `sudo macblock uninstall` removes system integration (launchd jobs, DNS settings).
         - If Homebrew fails to remove a `.reinstall` directory, follow the printed path and fix permissions.
     EOS
   end

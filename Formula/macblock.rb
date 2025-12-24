@@ -9,12 +9,13 @@ class Macblock < Formula
 
   url 'https://github.com/SpyicyDev/macblock/archive/refs/tags/v0.2.0.tar.gz'
   sha256 '16a580ebca88ca3c1c650f55290fa740cb85876bc9f017c8a1fa073de55382f0'
+  license 'MIT'
 
   head 'https://github.com/SpyicyDev/macblock.git', branch: 'main'
 
   depends_on :macos
-  depends_on 'python@3.12'
   depends_on 'dnsmasq'
+  depends_on 'python'
 
   def install
     virtualenv_install_with_resources
@@ -24,19 +25,20 @@ class Macblock < Formula
     <<~CAVEATS
       To complete installation:
         sudo #{bin}/macblock install
-        sudo #{bin}/macblock update
         sudo #{bin}/macblock enable
 
-      To check status:
+      Optional:
+        sudo #{bin}/macblock update
         #{bin}/macblock status
         #{bin}/macblock doctor
 
-      To uninstall system components:
-        sudo #{bin}/macblock uninstall
+      Documentation:
+        #{homepage}
     CAVEATS
   end
 
   test do
     assert_match 'macblock', shell_output("#{bin}/macblock --version")
+    assert_match 'USAGE', shell_output("#{bin}/macblock --help")
   end
 end
